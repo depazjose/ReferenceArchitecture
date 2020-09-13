@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:~/data/demoRef;TRACE_LEVEL_FILE=4
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  output:
+    ansi:
+      enabled: ALWAYS    
+server:
+  port: 9100
+
