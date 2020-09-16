@@ -64,7 +64,7 @@ public class BookRepositoryAdapterTest {
     bookData.setId(id);
     bookData.setName(book.getName());
     bookData.setIsbn(book.getIsbn());
-    bookData.setAutor(book.getAutor());
+    bookData.setAuthor(book.getAuthor());
     bookData.setAvailable(book.getAvailable());
     bookData.setQuantity(book.getQuantity());
     return bookData;
@@ -72,7 +72,7 @@ public class BookRepositoryAdapterTest {
 
   private Book buildBook() {
     Book book = Book.builder()
-        .isbn(isbn).autor(bookAutHor).name(bookName)
+        .isbn(isbn).author(bookAutHor).name(bookName)
         .available(true).quantity(elementSize)
         .properties(properties).build();
     return book;

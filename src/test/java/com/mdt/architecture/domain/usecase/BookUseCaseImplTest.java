@@ -60,7 +60,7 @@ public class BookUseCaseImplTest {
 
   private Book buildBook() {
     Book book = Book.builder()
-        .isbn(isbn).autor(bookAuthor).name(bookName)
+        .isbn(isbn).author(bookAuthor).name(bookName)
         .available(true).quantity(elementSize)
         .properties(properties).build();
     return book;
@@ -68,7 +68,7 @@ public class BookUseCaseImplTest {
 
   private Book buildNewBook() {
     Book book = Book.builder()
-        .id(id).isbn(isbn).autor(bookAuthor).name(bookName)
+        .id(id).isbn(isbn).author(bookAuthor).name(bookName)
         .available(true).quantity(elementSize)
         .properties(properties).build();
     return book;

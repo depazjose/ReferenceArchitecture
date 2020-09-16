@@ -9,12 +9,14 @@ import java.util.Map;
 
 import com.mdt.architecture.domain.model.Book;
 
+import com.mdt.architecture.infrastructure.entrypoints.receivers.book.dto.BookResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 
 @SpringBootTest
 public class BookControllerTest {
@@ -59,28 +61,28 @@ public class BookControllerTest {
 
     BookRequest.CreationBookRequest request = buildBookRequest();
     Book newBook = buildNewBook();
+    Book bookFound = Book.builder().build();
 
+    Mockito.when(bookUseCase.findByIsbn(any(Long.class))).thenReturn(bookFound);
     Mockito.when(bookUseCase.createBook(any(Book.class))).thenReturn(newBook);
 
-    Assertions.assertNotNull(bookController.createBook(request, null).getId());
+    Assertions.assertNotNull(bookController.createBook(request, null).getBody().getId());
   }
 
   @Test
   void shouldGetAvailableBook() {
-
-    BookRequest.CreationBookRequest request = buildBookRequest();
     Book newBook = buildNewBook();
 
-    Mockito.when(bookUseCase.createBook(any(Book.class))).thenReturn(newBook);
+    Mockito.when(bookUseCase.findByIsbn(any(Long.class))).thenReturn(newBook);
 
     Assertions.assertEquals(true,
-        bookController.createBook(request, null).getAvailable());
+        bookController.getBook(isbn).getAvailable());
   }
 
 
   private Book buildBook() {
     Book book = Book.builder()
-        .isbn(isbn).autor(bookAuthor).name(bookName)
+        .isbn(isbn).author(bookAuthor).name(bookName)
         .quantity(elementSize)
         .properties(properties).build();
     return book;
@@ -88,7 +90,7 @@ public class BookControllerTest {
 
   private Book buildNewBook() {
     Book book = Book.builder()
-        .id(id).isbn(isbn).autor(bookAuthor).name(bookName)
+        .id(id).isbn(isbn).author(bookAuthor).name(bookName)
         .available(true).quantity(elementSize)
         .properties(properties).build();
     return book;
@@ -99,7 +101,7 @@ public class BookControllerTest {
    */
   private BookRequest.CreationBookRequest buildBookRequest() {
     BookRequest.CreationBookRequest creationBookRequest = new BookRequest.CreationBookRequest();
-    creationBookRequest.setAutor(bookAuthor);
+    creationBookRequest.setAuthor(bookAuthor);
     creationBookRequest.setName(bookName);
     creationBookRequest.setIsbn(isbn);
     creationBookRequest.setQuantity(elementSize);

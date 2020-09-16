@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseConfig {
 
   @Bean
-  public BookUseCaseImpl generateBookUseCase(
+  public BookUseCaseImpl bookUseCaseImpl(
       final BookRepository bookRepository) {
     return new BookUseCaseImpl(bookRepository);
   }

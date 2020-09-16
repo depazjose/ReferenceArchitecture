@@ -10,7 +10,28 @@ spring:
       ddl-auto: update
   output:
     ansi:
-      enabled: ALWAYS    
+      enabled: ALWAYS
+  h2:
+    console:
+      enabled: false
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: true
+  redis:
+    host: localhost
+    port: 6379
+
+  cache:
+    type: redis
+    redis:
+      time-to-live: 60000
+
+inventory:
+  active-items:
+    enabled: true
+    cron-period: 0 * * * * *
+
 server:
   port: 9100
 
