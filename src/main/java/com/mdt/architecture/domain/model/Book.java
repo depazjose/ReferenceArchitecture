@@ -3,7 +3,10 @@ Model package
  */
 package com.mdt.architecture.domain.model;
 
+import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,10 +16,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.mdt.architecture.infrastructure.adapters.h2repository.BookData;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,7 +25,8 @@ import lombok.ToString;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString
-public class Book {
+public class Book implements Serializable {
+  private static final long serialVersionUID = -7883007230820875782L;
 
   private Long id;
   private Long isbn;
@@ -35,8 +35,6 @@ public class Book {
   private Boolean available;
   private String author;
   private Map<String, Object> properties;
-  @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-  @JsonSerialize(using = LocalDateTimeSerializer.class)
   private LocalDateTime startSaleDate;
   private String status;
 
@@ -52,7 +50,7 @@ public class Book {
             .properties(convertMapFromJson(bookData.getProperties()))
             .status(bookData.getStatus())
             .startSaleDate(Objects.nonNull(bookData.getStartSaleDate())
-                    ? bookData.getStartSaleDate().toLocalDateTime() : null)
+                    ? toLocalDateTime(bookData.getStartSaleDate()) : null)
             .build();
   }
 
@@ -70,5 +68,9 @@ public class Book {
     } catch (Exception  e) {
       return new HashMap<>();
     }
+  }
+
+  private static LocalDateTime toLocalDateTime(Timestamp timestamp) {
+    return timestamp.toInstant().atZone(ZoneId.of("UTC")).toLocalDateTime();
   }
 }

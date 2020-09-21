@@ -106,6 +106,7 @@ public class BookControllerTest {
     creationBookRequest.setIsbn(isbn);
     creationBookRequest.setQuantity(elementSize);
     creationBookRequest.setProperties(properties);
+    creationBookRequest.setStartSaleDate(System.currentTimeMillis());
     return creationBookRequest;
   }
 

@@ -1,8 +1,6 @@
 package com.mdt.architecture.infrastructure.entrypoints.receivers.book.dto;
 
-import java.time.Instant;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -13,7 +11,6 @@ import com.mdt.architecture.domain.model.Book;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 public interface BookResponse {

@@ -23,6 +23,7 @@ public class BookRepositoryAdapter {
 
   public Book saveBook(Book book) {
     BookData bookData = new BookData();
+    bookData.setId(0L);
     bookData.setName(book.getName());
     bookData.setIsbn(book.getIsbn());
     bookData.setAuthor(book.getAuthor());
@@ -64,6 +65,10 @@ public class BookRepositoryAdapter {
     return jpaBookRepository.findAll(specification).stream()
             .map(Book::fromModel)
             .collect(Collectors.toList());
+  }
+
+  public int updateStatus(Long id, String status) {
+    return jpaBookRepository.updateStatusById(id, status);
   }
 
   private Specification<BookData> criteriaByStatus(String status) {

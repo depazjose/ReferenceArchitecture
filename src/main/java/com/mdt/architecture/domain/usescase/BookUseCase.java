@@ -13,4 +13,6 @@ public interface BookUseCase {
   List<Book> findAll();
 
   List<Book> findAllByStatus(String status);
+
+  int updateStatus(Long id, String status);
 }

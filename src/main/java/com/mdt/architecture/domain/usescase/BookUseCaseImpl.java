@@ -33,4 +33,11 @@ public class BookUseCaseImpl implements BookUseCase {
   public List<Book> findAllByStatus(String status) {
     return bookRepository.findAllByStatus(status);
   }
+
+  @Override
+  public int updateStatus(Long id, String status) {
+    return bookRepository.updateStatus(id, status);
+  }
+
+
 }

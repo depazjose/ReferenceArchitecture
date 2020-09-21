@@ -37,5 +37,10 @@ public class BookRepositoryImpl implements BookRepository {
     public List<Book> findAllByStatus(String status) {
       return bookRepositoryAdapter.findAllByStatus(status);
     }
+
+    @Override
+    public int updateStatus(Long id, String status) {
+        return bookRepositoryAdapter.updateStatus(id, status);
+    }
 }
 
