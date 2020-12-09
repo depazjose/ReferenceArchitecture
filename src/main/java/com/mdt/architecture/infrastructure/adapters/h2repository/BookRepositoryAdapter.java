@@ -3,14 +3,12 @@ package com.mdt.architecture.infrastructure.adapters.h2repository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mdt.architecture.domain.model.Book;
-
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Repository;
-
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class BookRepositoryAdapter {
@@ -51,7 +49,7 @@ public class BookRepositoryAdapter {
       return Book.fromModel(bookData);
     }
 
-    return Book.builder().build();
+    return null;
   }
 
   public List<Book> findAll() {

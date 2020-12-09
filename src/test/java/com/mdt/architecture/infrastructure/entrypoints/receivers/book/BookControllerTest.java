@@ -2,21 +2,17 @@ package com.mdt.architecture.infrastructure.entrypoints.receivers.book;
 
 import static org.mockito.ArgumentMatchers.any;
 
+import com.mdt.architecture.domain.model.Book;
 import com.mdt.architecture.domain.usescase.BookUseCase;
 import com.mdt.architecture.infrastructure.entrypoints.receivers.book.dto.BookRequest;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.mdt.architecture.domain.model.Book;
-
-import com.mdt.architecture.infrastructure.entrypoints.receivers.book.dto.BookResponse;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
 
 @SpringBootTest
 public class BookControllerTest {

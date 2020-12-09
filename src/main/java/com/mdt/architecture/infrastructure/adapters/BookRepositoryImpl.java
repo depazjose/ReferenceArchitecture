@@ -5,7 +5,6 @@ import com.mdt.architecture.domain.model.gateway.BookRepository;
 import com.mdt.architecture.infrastructure.adapters.h2repository.BookRepositoryAdapter;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
@@ -13,7 +12,7 @@ public class BookRepositoryImpl implements BookRepository {
 
     private final BookRepositoryAdapter bookRepositoryAdapter;
 
-    public BookRepositoryImpl(BookRepositoryAdapter bookRepositoryAdapter) {
+    public BookRepositoryImpl(final BookRepositoryAdapter bookRepositoryAdapter) {
       this.bookRepositoryAdapter = bookRepositoryAdapter;
     }
 

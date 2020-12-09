@@ -2,19 +2,21 @@ package com.mdt.architecture.domain.usecase;
 
 import static org.mockito.ArgumentMatchers.any;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.mdt.architecture.domain.model.Book;
 import com.mdt.architecture.domain.model.gateway.BookRepository;
 import com.mdt.architecture.domain.usescase.BookUseCaseImpl;
-
+import com.zaxxer.hikari.HikariDataSource;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import org.junit.AfterClass;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
@@ -25,7 +27,10 @@ public class BookUseCaseImplTest {
   
   @InjectMocks
   private BookUseCaseImpl bookUseCase;
-  
+
+  @Autowired
+  private static HikariDataSource hikariDataSource;
+
   private Long id;
   private Long isbn;
   private String bookAuthor;
@@ -35,6 +40,7 @@ public class BookUseCaseImplTest {
   private static final int SIZE = 10;
   private static final long ID = 100L;
   private static final long ISBN = 1234567890L;
+
   @BeforeEach
   public void init() {
     id = ID;
@@ -43,6 +49,13 @@ public class BookUseCaseImplTest {
     bookName = "The Lord of rings";
     properties = new HashMap<>();
     elementSize = SIZE;
+  }
+
+  @AfterClass
+  public static void closeConnection() {
+    if (Objects.nonNull(hikariDataSource)) {
+      hikariDataSource.close();
+    }
   }
 
   @Test

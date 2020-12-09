@@ -1,10 +1,10 @@
-//Architecture package
 package com.mdt.architecture;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 
-@SpringBootTest
+@RunWith(MockitoJUnitRunner.class)
 class MainApplicationTest {
 
   @Test

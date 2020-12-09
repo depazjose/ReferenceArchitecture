@@ -1,13 +1,11 @@
 package com.mdt.architecture.domain.usescase;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mdt.architecture.domain.model.Book;
 import com.mdt.architecture.domain.model.gateway.BookRepository;
-
-import lombok.RequiredArgsConstructor;
-
+import com.mdt.architecture.domain.shared.BookNotFoundException;
 import java.util.List;
+import java.util.Objects;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class BookUseCaseImpl implements BookUseCase {
@@ -21,7 +19,13 @@ public class BookUseCaseImpl implements BookUseCase {
 
   @Override
   public Book findByIsbn(Long isbn) {
-    return bookRepository.findByIsbn(isbn);
+    Book result  = bookRepository.findByIsbn(isbn);
+
+    if (Objects.isNull(result)) {
+      throw new BookNotFoundException(isbn, "ISBN");
+    }
+
+    return result;
   }
 
   @Override

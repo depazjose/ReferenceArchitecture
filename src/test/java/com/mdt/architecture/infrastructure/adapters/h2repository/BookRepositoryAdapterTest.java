@@ -5,7 +5,6 @@ import static org.mockito.ArgumentMatchers.any;
 import com.mdt.architecture.domain.model.Book;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
