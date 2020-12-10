@@ -8,16 +8,19 @@ import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@SpringBootTest
-public class BookRepositoryAdapterTest {
+@ExtendWith(MockitoExtension.class)
+class BookRepositoryAdapterTest {
   
   @Mock
   private BookDataRepository jpaBookRepository;  
-    
+
+  @InjectMocks
   private BookRepositoryAdapter bookRepositoryAdapter;  
 
   private Long id;
@@ -37,7 +40,6 @@ public class BookRepositoryAdapterTest {
     bookAutHor = "J Tolkien";
     bookName = "The Lord of rings";
     properties = new HashMap<>();
-    bookRepositoryAdapter = new BookRepositoryAdapter(jpaBookRepository);
     elementSize = SIZE;
   }
 

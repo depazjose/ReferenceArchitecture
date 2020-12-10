@@ -19,3 +19,8 @@ spring:
       settings:
         trace: false
         web-allow-others: true
+
+inventory:
+  active-items:
+    enabled: true
+    cron-period: 0 * * * * *

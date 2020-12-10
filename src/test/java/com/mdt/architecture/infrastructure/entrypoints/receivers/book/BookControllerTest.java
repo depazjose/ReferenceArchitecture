@@ -10,12 +10,14 @@ import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@SpringBootTest
-public class BookControllerTest {
+@ExtendWith(MockitoExtension.class)
+class BookControllerTest {
 
   private static final int SIZE = 10;
   private static final long ID = 100L;
@@ -24,6 +26,7 @@ public class BookControllerTest {
   @Mock
   private BookUseCase bookUseCase;
 
+  @InjectMocks
   private BookController bookController;
 
   private Long id;
@@ -41,7 +44,6 @@ public class BookControllerTest {
     bookAuthor = "J Tolkien";
     bookName = "The Lord of rings";
     properties = new HashMap<>();
-    bookController = new BookController(bookUseCase);
     elementSize = SIZE;
   }
 
@@ -77,19 +79,17 @@ public class BookControllerTest {
 
 
   private Book buildBook() {
-    Book book = Book.builder()
+    return Book.builder()
         .isbn(isbn).author(bookAuthor).name(bookName)
         .quantity(elementSize)
         .properties(properties).build();
-    return book;
   }
 
   private Book buildNewBook() {
-    Book book = Book.builder()
+    return Book.builder()
         .id(id).isbn(isbn).author(bookAuthor).name(bookName)
         .available(true).quantity(elementSize)
         .properties(properties).build();
-    return book;
   }
 
   /*
