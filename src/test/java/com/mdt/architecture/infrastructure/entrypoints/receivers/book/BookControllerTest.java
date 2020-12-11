@@ -59,7 +59,7 @@ class BookControllerTest {
 
     BookRequest.CreationBookRequest request = buildBookRequest();
     Book newBook = buildNewBook();
-    Book bookFound = Book.builder().build();
+    Book bookFound = null;
 
     Mockito.when(bookUseCase.findByIsbn(any(Long.class))).thenReturn(bookFound);
     Mockito.when(bookUseCase.createBook(any(Book.class))).thenReturn(newBook);

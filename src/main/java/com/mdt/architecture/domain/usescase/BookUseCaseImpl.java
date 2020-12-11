@@ -2,9 +2,7 @@ package com.mdt.architecture.domain.usescase;
 
 import com.mdt.architecture.domain.model.Book;
 import com.mdt.architecture.domain.model.gateway.BookRepository;
-import com.mdt.architecture.domain.shared.BookNotFoundException;
 import java.util.List;
-import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -19,13 +17,7 @@ public class BookUseCaseImpl implements BookUseCase {
 
   @Override
   public Book findByIsbn(Long isbn) {
-    Book result  = bookRepository.findByIsbn(isbn);
-
-    if (Objects.isNull(result)) {
-      throw new BookNotFoundException(isbn, "ISBN");
-    }
-
-    return result;
+    return bookRepository.findByIsbn(isbn);
   }
 
   @Override

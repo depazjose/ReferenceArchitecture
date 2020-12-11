@@ -4,7 +4,7 @@
 This is a Java microservice project template, using hexagonal architecture as proposal for new projects. 
 
 
-The projects has the following structure:
+The project has the following structure:
 
 
 **../applications** <br />
@@ -32,3 +32,14 @@ The projects has the following structure:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BookResponse.java <br />
 &nbsp;&nbsp;&nbsp;&nbsp;BookController.java <br />
 **MainApplication.java** <br />
+
+
+
+Steps to build image and run image with "DOCKER":
+
+**Build docker image:**
+- docker build -t mdt/reference .
+
+**Run image**
+- docker run -p 9100:9100 -e "SPRING_PROFILES_ACTIVE=h2" mdt/reference:latest
+

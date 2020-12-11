@@ -2,10 +2,14 @@ package com.mdt.architecture.infrastructure.entrypoints.receivers.book;
 
 import com.mdt.architecture.domain.model.Book;
 import com.mdt.architecture.domain.shared.BookFoundException;
+import com.mdt.architecture.domain.shared.BookNotFoundException;
 import com.mdt.architecture.domain.usescase.BookUseCase;
-
 import com.mdt.architecture.infrastructure.entrypoints.receivers.book.dto.BookRequest.CreationBookRequest;
 import com.mdt.architecture.infrastructure.entrypoints.receivers.book.dto.BookResponse.BookDetailResponse;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import java.util.List;
+import java.util.Objects;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -19,12 +23,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping(value = "/api/v1/books", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -41,7 +40,13 @@ public class BookController {
    @GetMapping(value = "/{isbn}", produces = MediaType.APPLICATION_JSON_VALUE)
    @ApiOperation(value = "get book by code")
    public BookDetailResponse getBook(final @PathVariable Long isbn) {
-      return BookDetailResponse.fromModel(bookUseCase.findByIsbn(isbn));
+      Book result = bookUseCase.findByIsbn(isbn);
+
+      if (Objects.isNull(result)) {
+         throw new BookNotFoundException(isbn, "ISBN");
+      }
+
+      return BookDetailResponse.fromModel(result);
    }
 
    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -56,11 +61,10 @@ public class BookController {
    @ApiOperation(value = "create new book")
    public ResponseEntity<BookDetailResponse> createBook(
        final @Valid @RequestPart(name = "book") CreationBookRequest creationBookRequest,
-       final @ApiParam(value = "Portada file")
+       final @ApiParam(value = "Cover file")
        @RequestPart(name = "image", required = false) MultipartFile file) {
 
-
-      if (Objects.nonNull(bookUseCase.findByIsbn(creationBookRequest.getIsbn()).getId())) {
+      if (Objects.nonNull(bookUseCase.findByIsbn(creationBookRequest.getIsbn()))) {
         throw new BookFoundException(creationBookRequest.getIsbn());
       }
 
