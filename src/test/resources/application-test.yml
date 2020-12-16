@@ -24,3 +24,9 @@ inventory:
   active-items:
     enabled: true
     cron-period: 0 * * * * *
+
+azure:
+  serviceBus:
+    connectionString: Endpoint=sb://tech.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=P8UtCBChC+d6UoxaIXjiNeMt6Vr8f658746QdUH5ABg=
+    topicName: mdt_price
+    subscriptionName: mdt_api

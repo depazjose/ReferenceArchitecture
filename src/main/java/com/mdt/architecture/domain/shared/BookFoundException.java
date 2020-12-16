@@ -8,6 +8,6 @@ public class BookFoundException extends RuntimeException {
   static final long serialVersionUID = -6034897190045766990L;
 
   public BookFoundException(Long isbn) {
-      super(String.format("Book with ISBN %s already exists!", isbn));
+    super(String.format("Book with ISBN %s already exists!", isbn));
   }
 }

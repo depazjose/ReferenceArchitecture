@@ -10,14 +10,41 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+
+management:
+  endpoints:
+    enabled-by-default: false
+  endpoint:
+    health:
+      enabled: true
+      show-details: never
+      cache:
+        time-to-live: 20000ms
+    info:
+      enabled: true
+
 server:
   port: 9100
   error:
     include-message: always
+
+info:
+  build:
+    group: @project.groupId@
+    artifact: @project.artifactId@
+    version: @project.version@
+    name: @project.name@
+
 inventory:
   active-items:
     enabled: true
     cron-period: 0 * * * * *
+
+azure:
+  serviceBus:
+    connectionString: Endpoint=sb://tech.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=P8UtCBChC+d6UoxaIXjiNeMt6Vr8f658746QdUH5ABg=
+    topicName: mdt_price
+    subscriptionName: mdt_api
 
 ---
 spring.profiles: mysql

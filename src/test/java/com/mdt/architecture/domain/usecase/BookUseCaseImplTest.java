@@ -1,9 +1,8 @@
 package com.mdt.architecture.domain.usecase;
 
-import static org.mockito.ArgumentMatchers.any;
-
-import com.mdt.architecture.domain.model.Book;
-import com.mdt.architecture.domain.model.gateway.BookRepository;
+import com.mdt.architecture.domain.model.book.Book;
+import com.mdt.architecture.domain.model.book.gateway.BookRepository;
+import com.mdt.architecture.domain.model.event.gateway.EventSender;
 import com.mdt.architecture.domain.usescase.BookUseCaseImpl;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,62 +13,57 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
 class BookUseCaseImplTest {
- 
-  @Mock  
+  @Mock
   private BookRepository bookRepository;
-  
+
+  @Mock
+  private EventSender sender;
+
   @InjectMocks
   private BookUseCaseImpl bookUseCase;
 
-  private Long id;
-  private Long isbn;
-  private String bookAuthor;
-  private String bookName;
-  private Map<String, Object> properties;
-  private int elementSize;
+  private String bookAuthor = "J Tolkien";
+  private String bookName = "The Lord of rings";
+  private Map<String, Object> properties = new HashMap<>();
   private static final int SIZE = 10;
   private static final long ID = 100L;
-  private static final long ISBN = 1234567890L;
+  private static final Long ISBN = 1234567890L;
 
   @BeforeEach
   public void init() {
-    id = ID;
-    isbn = ISBN;
-    bookAuthor = "J Tolkien";
-    bookName = "The Lord of rings";
-    properties = new HashMap<>();
-    elementSize = SIZE;
   }
 
   @Test
-  public void shouldGetBook() {
-    Mockito.when(bookRepository.findByIsbn(isbn)).thenReturn(Book.builder().build());  
-    Assertions.assertNotNull(bookUseCase.findByIsbn(isbn));
+  void shouldCreateBook() {
+    Book bookToSave = buildBook();
+    Mockito.when(bookRepository.saveBook(bookToSave)).thenReturn(buildNewBook());
+    Book result = bookUseCase.createBook(bookToSave);
+    Assertions.assertNotNull(result);
   }
 
   @Test
-  public void shouldCreateBook() {
-    Mockito.when(bookRepository.saveBook(any(Book.class))).thenReturn(buildNewBook());
-    Book result = bookUseCase.createBook(buildBook());
+  void shouldGetBook() {
+    Mockito.when(bookRepository.findByIsbn(ISBN)).thenReturn(buildNewBook());
+    Book result = bookUseCase.findByIsbn(ISBN);
     Assertions.assertNotNull(result);
   }
 
   private Book buildBook() {
     Book book = Book.builder()
-        .isbn(isbn).author(bookAuthor).name(bookName)
-        .available(true).quantity(elementSize)
+        .isbn(ISBN).author(bookAuthor).name(bookName)
+        .available(true).quantity(SIZE)
         .properties(properties).build();
     return book;
   }
 
   private Book buildNewBook() {
     Book book = Book.builder()
-        .id(id).isbn(isbn).author(bookAuthor).name(bookName)
-        .available(true).quantity(elementSize)
+        .id(ID).isbn(ISBN).author(bookAuthor).name(bookName)
+        .available(true).quantity(SIZE)
         .properties(properties).build();
     return book;
   }

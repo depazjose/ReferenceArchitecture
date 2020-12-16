@@ -1,4 +1,4 @@
-package com.mdt.architecture.infrastructure.entrypoints.receivers.book.integration;
+package com.mdt.architecture.infrastructure.entrypoints.receivers.web.book.integration;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -38,12 +38,12 @@ public class BookControllerTest {
 
   @Test
   public void shouldGetBook() throws Exception {
-  String url = "/api/v1/books/123456";
+    String url = "/api/v1/books/123456";
 
-  mvc.perform(get(url)
-      .contentType(MediaType.APPLICATION_JSON))
-      .andExpect(status().isOk())
-      .andExpect(content().json("{'isbn':123456}"));
+    mvc.perform(get(url)
+        .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().json("{'isbn':123456}"));
   }
 
   @Test

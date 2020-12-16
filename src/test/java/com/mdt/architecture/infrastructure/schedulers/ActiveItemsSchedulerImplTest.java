@@ -1,7 +1,7 @@
 package com.mdt.architecture.infrastructure.schedulers;
 
 import com.mdt.architecture.domain.usescase.BookUseCase;
-import com.mdt.architecture.infrastructure.adapters.h2repository.BookRepositoryAdapter;
+import com.mdt.architecture.infrastructure.adapters.database.BookRepositoryAdapter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,8 +25,8 @@ class ActiveItemsSchedulerImplTest {
 
   @Test
   void shouldProcessTask() {
-     activeItemsScheduler.processTaskActiveItems();
-     Mockito.verify(bookRepositoryAdapter, Mockito.times(1))
-         .findAllByStatus("SCHEDULED");
+    activeItemsScheduler.processTaskActiveItems();
+    Mockito.verify(bookRepositoryAdapter, Mockito.times(1))
+        .findAllByStatus("SCHEDULED");
   }
 }
