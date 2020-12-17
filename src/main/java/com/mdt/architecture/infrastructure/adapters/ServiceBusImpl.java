@@ -34,7 +34,6 @@ public class ServiceBusImpl implements EventSender {
       logger.error(ex.getMessage());
     }
 
-    senderClient.close();
   }
 
   private String getJsonString(Payload payload) {
