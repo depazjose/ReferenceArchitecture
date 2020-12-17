@@ -38,5 +38,4 @@ public class ServiceBusImplTest {
     serviceBusImpl.sendMessage(payload);
   }
 
-
 }
