@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfiguration {
 
   private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES =
-      new HashSet<String>(Arrays.asList("application/json"));
+      new HashSet<>(Arrays.asList("application/json"));
 
   @Bean
   public Docket api() {

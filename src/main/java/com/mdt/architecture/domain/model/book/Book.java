@@ -30,7 +30,7 @@ public class Book implements Serializable {
   private Integer quantity;
   private Boolean available;
   private String author;
-  private Map<String, Object> properties;
+  private transient Map<String, Object> properties;
   private LocalDateTime startSaleDate;
   private String status;
 
@@ -52,9 +52,9 @@ public class Book implements Serializable {
 
   public static List<Book> fromModel(List<BookData> bookDataList) {
     return bookDataList.stream()
-            .filter(bookData -> Objects.nonNull(bookData))
-            .map(book -> Book.fromModel(book))
-            .filter(newBook -> Objects.nonNull(newBook))
+            .filter(Objects::nonNull)
+            .map(Book::fromModel)
+            .filter(Objects::nonNull)
             .collect(Collectors.toList());
   }
 

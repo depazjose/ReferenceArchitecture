@@ -52,8 +52,7 @@ public class BookController {
   @ApiOperation(value = "get all books")
   public ResponseEntity<List<BookDetailResponse>> getAllBook() {
 
-    return new ResponseEntity<List<BookDetailResponse>>(
-            BookDetailResponse.fromModel(bookUseCase.findAll()), HttpStatus.ACCEPTED);
+    return new ResponseEntity<>(BookDetailResponse.fromModel(bookUseCase.findAll()), HttpStatus.ACCEPTED);
   }
 
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)

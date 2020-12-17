@@ -25,8 +25,7 @@ public class BookUseCaseImpl implements BookUseCase {
 
   @Override
   public Book findByIsbn(Long isbn) {
-    Book result = bookRepository.findByIsbn(isbn);
-    return result;
+    return bookRepository.findByIsbn(isbn);
   }
 
   @Override
