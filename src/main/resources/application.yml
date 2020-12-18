@@ -64,11 +64,11 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     username: ${MYSQ_USER:root}
     password: ${MYSQ_PASSWORD:root}
-    initialization-mode: never
+    initialization-mode: always
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
     properties:
       hibernate.hbm2ddl.import_files: schema.sql
 ---
