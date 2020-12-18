@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class UseCaseConfigTest {
+class UseCaseConfigTest {
 
   private UseCaseConfig configuration = new UseCaseConfig();
 
@@ -20,7 +20,7 @@ public class UseCaseConfigTest {
   private EventSender eventSender;
 
   @Test
-  public void shouldCreateBookUseCase() {
+  void shouldCreateBookUseCase() {
     final BookUseCaseImpl bookUseCase = configuration.bookUseCaseImpl(bookRepository, eventSender);
   }
 }

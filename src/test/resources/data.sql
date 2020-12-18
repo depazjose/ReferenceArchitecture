@@ -1,5 +1,6 @@
 INSERT INTO book_data
-(author,
+(id,
+author,
 available,
 isbn,
 name,
@@ -8,7 +9,8 @@ quantity,
 start_sale_date,
 status)
 VALUES
-('author',
+(1,
+'author',
 false,
 123456,
 'CLEAN CODE',
@@ -18,7 +20,8 @@ false,
 'SCHEDULED');
 
 INSERT INTO book_data
-(author,
+(id,
+author,
 available,
 isbn,
 name,
@@ -27,7 +30,8 @@ quantity,
 start_sale_date,
 status)
 VALUES
-('author',
+(2,
+'author',
 false,
 1234567890,
 'CLEAN CODE',
