@@ -44,14 +44,14 @@ class BookRepositoryAdapterTest {
   }
 
   @Test
-  public void shouldRetrieveBookData() {
+  void shouldRetrieveBookData() {
     Book bookToSave = buildBook();
     Mockito.when(jpaBookRepository.findByIsbn(isbn)).thenReturn(buildBookData(bookToSave));
     Assertions.assertNotNull(bookRepositoryAdapter.findByIsbn(isbn));
   }
 
   @Test
-  public void shouldCreateBookData() {
+  void shouldCreateBookData() {
     Book bookToSave = buildBook();
     Mockito.when(jpaBookRepository.save(any(BookData.class)))
         .thenReturn(buildBookData(bookToSave));

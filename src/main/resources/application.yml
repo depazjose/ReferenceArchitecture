@@ -1,12 +1,19 @@
 ---
 spring:
   redis:
-    host: localhost
-    port: 6379
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    database: ${REDIS_DATABASE:0}
+    timeToLive: ${REDIS_EXPIRE_TIME:2592000}
   cache:
     type: redis
     redis:
       time-to-live: 60000
+  jackson:
+    serialization:
+      INDENT_OUTPUT: false
+      WRITE_DATES_AS_TIMESTAMPS: false
+    default-property-inclusion: NON_NULL
   output:
     ansi:
       enabled: ALWAYS
@@ -24,7 +31,9 @@ management:
       enabled: true
 
 server:
-  port: 9100
+  compression:
+    enabled: true
+  port: ${SERVER_PORT:9100}
   error:
     include-message: always
 
@@ -33,7 +42,7 @@ info:
     group: @project.groupId@
     artifact: @project.artifactId@
     version: @project.version@
-    name: @project.name@
+    name: Reference
 
 inventory:
   active-items:
@@ -42,19 +51,19 @@ inventory:
 
 azure:
   serviceBus:
-    connectionString: Endpoint=sb://tech.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=P8UtCBChC+d6UoxaIXjiNeMt6Vr8f658746QdUH5ABg=
-    topicName: mdt_price
-    subscriptionName: mdt_api
+    connectionString: ${SERVICE_BUS_ENDPOINT:Endpoint=sb://tech.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=P8UtCBChC+d6UoxaIXjiNeMt6Vr8f658746QdUH5ABg=}
+    topicName: ${TOPIC_NAME:mdt_price}
+    subscriptionName: ${SUBSCRIPTION_NAME:mdt_api}
 
 ---
 spring.profiles: mysql
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/hexa?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_SCHEMA:hexa}?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
     driverClassName: com.mysql.cj.jdbc.Driver
-    username: root
-    password: root
+    username: ${MYSQ_USER:root}
+    password: ${MYSQ_PASSWORD:root}
     initialization-mode: never
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect

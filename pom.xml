@@ -9,8 +9,8 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>reference_architecture</name>
-
+    <name>reference-architecture</name>
+    <description>Main project</description>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -334,6 +334,11 @@
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimiter>@</delimiter>
+                    </delimiters>
+                </configuration>
                 <executions>
                     <execution>
                         <id>copy-resources</id>
