@@ -50,7 +50,9 @@ public class ActiveItemsSchedulerImpl {
         .collect(Collectors.toList());
 
     List<Book> bookUpdateFAiled = booksToUpdate.stream()
-        .map(book -> Pair.of(bookRepositoryAdapter.updateStatus(book.getId(), "OPEN"), book))
+        .map(book -> {
+          book.setStatus("OPEN");
+          return Pair.of(bookRepositoryAdapter.updateStatus(book), book); })
         .peek(pair -> {
           if (pair.getFirst() == 1) {
             logger.info(pair.getSecond().getId());

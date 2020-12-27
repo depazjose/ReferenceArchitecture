@@ -17,7 +17,7 @@ public class BookUseCaseImpl implements BookUseCase {
   public Book createBook(Book book) {
     Book result = bookRepository.saveBook(book);
     Payload payload = new Payload();
-    payload.setId(result.getId().toString());
+    payload.setId(result.getId());
     payload.setBarCode(result.getIsbn());
     eventSender.sendMessage(payload);
     return result;
@@ -39,8 +39,8 @@ public class BookUseCaseImpl implements BookUseCase {
   }
 
   @Override
-  public int updateStatus(Long id, String status) {
-    return bookRepository.updateStatus(id, status);
+  public int updateStatus(Book book) {
+    return bookRepository.updateStatus(book);
   }
 
 }

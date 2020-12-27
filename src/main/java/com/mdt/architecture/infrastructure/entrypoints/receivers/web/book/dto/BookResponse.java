@@ -18,7 +18,7 @@ public interface BookResponse {
   @ToString
   @JsonInclude(JsonInclude.Include.NON_NULL)
   class BookDetailResponse {
-    private Long id;
+    private String id;
     private Long isbn;
     private String name;
     private Integer quantity;

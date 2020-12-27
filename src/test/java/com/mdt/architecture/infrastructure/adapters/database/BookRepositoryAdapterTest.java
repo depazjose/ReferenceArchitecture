@@ -23,14 +23,14 @@ class BookRepositoryAdapterTest {
   @InjectMocks
   private BookRepositoryAdapter bookRepositoryAdapter;
 
-  private Long id;
+  private String id;
   private Long isbn;
   private String bookAutHor;
   private String bookName;
   private Map<String, Object> properties;
   private int elementSize;
   private static final int SIZE = 10;
-  private static final long ID = 100L;
+  private static final String ID = "100L";
   private static final long ISBN = 1234567890L;
 
   @BeforeEach

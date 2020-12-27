@@ -5,9 +5,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mdt.architecture.infrastructure.adapters.database.BookData;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,16 +15,18 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
+@Setter
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString
 public class Book implements Serializable {
   private static final long serialVersionUID = -7883007230820875782L;
 
-  private Long id;
+  private String id;
   private Long isbn;
   private String name;
   private Integer quantity;
@@ -66,7 +68,8 @@ public class Book implements Serializable {
     }
   }
 
-  private static LocalDateTime toLocalDateTime(Timestamp timestamp) {
+  private static LocalDateTime toLocalDateTime(ZonedDateTime timestamp) {
+
     return timestamp.toInstant().atZone(ZoneId.of("UTC")).toLocalDateTime();
   }
 }

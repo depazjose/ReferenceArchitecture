@@ -13,5 +13,5 @@ public interface BookRepository {
 
   List<Book> findAllByStatus(String status);
 
-  int updateStatus(Long id, String status);
+  int updateStatus(Book book);
 }

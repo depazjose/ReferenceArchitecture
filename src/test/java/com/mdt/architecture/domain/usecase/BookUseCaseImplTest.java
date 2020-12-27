@@ -30,7 +30,7 @@ class BookUseCaseImplTest {
   private String bookName = "The Lord of rings";
   private Map<String, Object> properties = new HashMap<>();
   private static final int SIZE = 10;
-  private static final long ID = 100L;
+  private static final String ID = "100L";
   private static final Long ISBN = 1234567890L;
 
   @BeforeEach

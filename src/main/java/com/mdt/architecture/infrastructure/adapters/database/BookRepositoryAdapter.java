@@ -3,7 +3,7 @@ package com.mdt.architecture.infrastructure.adapters.database;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mdt.architecture.domain.model.book.Book;
-import java.sql.Timestamp;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -21,7 +21,6 @@ public class BookRepositoryAdapter {
 
   public Book saveBook(Book book) {
     BookData bookData = new BookData();
-    bookData.setId(0L);
     bookData.setName(book.getName());
     bookData.setIsbn(book.getIsbn());
     bookData.setAuthor(book.getAuthor());
@@ -33,7 +32,7 @@ public class BookRepositoryAdapter {
       bookData.setProperties("{}");
     }
     if (Objects.nonNull(book.getStartSaleDate())) {
-      bookData.setStartSaleDate(Timestamp.valueOf(book.getStartSaleDate()));
+      bookData.setStartSaleDate(book.getStartSaleDate().atZone(ZoneId.of("UTC")));
     }
     bookData.setStatus(book.getStatus());
 
@@ -58,13 +57,29 @@ public class BookRepositoryAdapter {
 
   public List<Book> findAllByStatus(String status) {
     Specification<BookData> specification = criteriaByStatus(status);
-    return jpaBookRepository.findAll(specification).stream()
+    return jpaBookRepository.findByStatus(status).stream()
             .map(Book::fromModel)
             .collect(Collectors.toList());
   }
 
-  public int updateStatus(Long id, String status) {
-    return jpaBookRepository.updateStatusById(id, status);
+  public int updateStatus(Book book) {
+    BookData bookData = new BookData();
+    bookData.setId(book.getId());
+    bookData.setIsbn(book.getIsbn());
+    bookData.setAuthor(book.getAuthor());
+    bookData.setName(book.getName());
+    bookData.setAvailable(book.getAvailable());
+    bookData.setQuantity(book.getQuantity());
+    bookData.setStatus(book.getStatus());
+    try {
+      bookData.setProperties(new ObjectMapper().writeValueAsString(book.getProperties()));
+    } catch (JsonProcessingException e) {
+      bookData.setProperties("{}");
+    }
+    if (Objects.nonNull(book.getStartSaleDate())) {
+      bookData.setStartSaleDate(book.getStartSaleDate().atZone(ZoneId.of("UTC")));
+    }
+    return Objects.nonNull(jpaBookRepository.save(bookData)) ? 1 : 0;
   }
 
   private Specification<BookData> criteriaByStatus(String status) {

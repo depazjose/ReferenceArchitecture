@@ -38,8 +38,8 @@ public class BookRepositoryImpl implements BookRepository {
   }
 
   @Override
-  public int updateStatus(Long id, String status) {
-    return bookRepositoryAdapter.updateStatus(id, status);
+  public int updateStatus(Book book) {
+    return bookRepositoryAdapter.updateStatus(book);
   }
 }
 

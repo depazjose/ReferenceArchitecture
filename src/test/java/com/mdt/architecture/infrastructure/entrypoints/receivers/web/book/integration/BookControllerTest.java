@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.mdt.architecture.infrastructure.adapters.database.BookData;
 import com.zaxxer.hikari.HikariDataSource;
 import java.util.Objects;
 import org.junit.AfterClass;
@@ -12,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -36,8 +38,19 @@ public class BookControllerTest {
     }
   }
 
+  @Autowired
+  private MongoTemplate mongoTemplate;
+
   @Test
   public void shouldGetBook() throws Exception {
+    BookData bookData = new BookData();
+    bookData.setIsbn(123456L);
+    bookData.setAuthor("Author");
+    bookData.setStatus("OPEN");
+    bookData.setProperties("{}");
+    bookData.setAvailable(true);
+    mongoTemplate.createCollection("book_data");
+    mongoTemplate.insert(bookData);
     String url = "/api/v1/books/123456";
 
     mvc.perform(get(url)

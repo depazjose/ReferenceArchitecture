@@ -1,24 +1,19 @@
 package com.mdt.architecture.infrastructure.adapters.database;
 
-import java.sql.Timestamp;
+import java.time.ZonedDateTime;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "book_data")
-@Getter
-@Setter
+@Data
+@Document(collection = "book_data")
+@NoArgsConstructor
 public class BookData {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private String id;
   @Column(unique = true)
   private Long isbn;
   @NotBlank(message = "Name is mandatory")
@@ -29,6 +24,6 @@ public class BookData {
   private String author;
   private String properties;
   @Column(name = "start_sale_date")
-  private Timestamp startSaleDate;
+  private ZonedDateTime startSaleDate;
   private String status;
 }

@@ -20,7 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class BookControllerTest {
 
   private static final int SIZE = 10;
-  private static final long ID = 100L;
+  private static final String ID = "100L";
   private static final long ISBN = 1234567890L;
 
   @Mock
