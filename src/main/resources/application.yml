@@ -92,7 +92,7 @@ spring:
   data:
     mongodb:
       database: mdt
-      uri: ${MONGODB_URI:mongodb://tech:DFhlEGbi9BWAiEQ8Ytsf41TfZyO73UrnerGE3EHKRxxABCDaLlgHRVKmSgoMQb4pkNW8jQl4auerSHRhnl2NgiA==@midesatech.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@midesatech@}
+      uri: ${MONGODB_URI:mongodb://tech:EFalEGbi9BWAiEQ8Ytsf41TfZyO73UrnerGE3EHKRxxABCDaLlgHRVKmSgoMQb4pkNW8jQl4auerSHRhnl2NgiA==@tech.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@midesatech@}
 ---
 spring:
   profiles: test
