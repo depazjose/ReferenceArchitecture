@@ -47,6 +47,5 @@ public interface BookResponse {
     public static List<BookDetailResponse> fromModel(final List<Book> books) {
       return books.stream().map(BookDetailResponse::fromModel).collect(Collectors.toList());
     }
-
   }
 }
