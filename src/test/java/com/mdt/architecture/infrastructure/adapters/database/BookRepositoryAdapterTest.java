@@ -3,6 +3,9 @@ package com.mdt.architecture.infrastructure.adapters.database;
 import static org.mockito.ArgumentMatchers.any;
 
 import com.mdt.architecture.domain.model.book.Book;
+import com.mdt.architecture.infrastructure.adapters.database.book.BookData;
+import com.mdt.architecture.infrastructure.adapters.database.book.BookDataRepository;
+import com.mdt.architecture.infrastructure.adapters.database.book.BookRepositoryAdapter;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;

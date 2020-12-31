@@ -1,7 +1,7 @@
 package com.mdt.architecture.infrastructure.schedulers;
 
 import com.mdt.architecture.domain.usescase.BookUseCase;
-import com.mdt.architecture.infrastructure.adapters.database.BookRepositoryAdapter;
+import com.mdt.architecture.infrastructure.adapters.database.book.BookRepositoryAdapter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

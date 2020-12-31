@@ -2,7 +2,7 @@ package com.mdt.architecture.infrastructure.adapters;
 
 import com.mdt.architecture.domain.model.book.Book;
 import com.mdt.architecture.domain.model.book.gateway.BookRepository;
-import com.mdt.architecture.infrastructure.adapters.database.BookRepositoryAdapter;
+import com.mdt.architecture.infrastructure.adapters.database.book.BookRepositoryAdapter;
 import java.util.List;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;

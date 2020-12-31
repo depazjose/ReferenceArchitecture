@@ -1,4 +1,4 @@
-package com.mdt.architecture.infrastructure.adapters.database;
+package com.mdt.architecture.infrastructure.adapters.database.book;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

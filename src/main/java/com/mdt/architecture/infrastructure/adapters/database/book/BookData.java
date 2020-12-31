@@ -1,4 +1,4 @@
-package com.mdt.architecture.infrastructure.adapters.database;
+package com.mdt.architecture.infrastructure.adapters.database.book;
 
 import java.sql.Timestamp;
 import javax.persistence.Column;

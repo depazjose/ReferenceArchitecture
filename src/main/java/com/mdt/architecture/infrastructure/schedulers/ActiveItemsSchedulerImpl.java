@@ -2,7 +2,7 @@ package com.mdt.architecture.infrastructure.schedulers;
 
 import com.mdt.architecture.domain.model.book.Book;
 import com.mdt.architecture.domain.usescase.BookUseCase;
-import com.mdt.architecture.infrastructure.adapters.database.BookRepositoryAdapter;
+import com.mdt.architecture.infrastructure.adapters.database.book.BookRepositoryAdapter;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;

@@ -1,13 +1,9 @@
 package com.mdt.architecture.infrastructure.adapters.database.publishinghouse;
 
-import java.util.List;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.repository.RepositoryDefinition;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
-@RepositoryDefinition(domainClass = PublishingHouseData.class, idClass = Long.class)
-public interface PublishingHouseDataRepository extends JpaSpecificationExecutor<PublishingHouseData> {
+@Repository
+public interface PublishingHouseDataRepository extends MongoRepository<PublishingHouseData, Long> {
 
-  PublishingHouseData save(PublishingHouseData publishingHouseData);
-
-  List<PublishingHouseData> findAll();
 }

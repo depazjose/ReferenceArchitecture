@@ -17,6 +17,10 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+  data:
+    mongodb:
+      database: db-refetence-architecture
+      uri: mongodb://bd-reference-architecture:AT29H68mQjFwfVjcxEzWag1QATVCavQJmP95OluxB09tfJuVbtIHaokUeQQEqtguUcYGJlO7T1wI6eMF0Ngh1g==@bd-reference-architecture.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@bd-reference-architecture@
 
 management:
   endpoints:

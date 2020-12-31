@@ -3,7 +3,7 @@ package com.mdt.architecture.domain.model.book;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mdt.architecture.infrastructure.adapters.database.BookData;
+import com.mdt.architecture.infrastructure.adapters.database.book.BookData;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

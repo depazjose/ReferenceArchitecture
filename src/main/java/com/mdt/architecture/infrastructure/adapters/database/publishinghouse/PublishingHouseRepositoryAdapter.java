@@ -1,6 +1,7 @@
 package com.mdt.architecture.infrastructure.adapters.database.publishinghouse;
 
 import com.mdt.architecture.domain.model.publishingHouse.PublishingHouse;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -18,7 +19,10 @@ public class PublishingHouseRepositoryAdapter {
     publishingHouseData.setName(publishingHouse.getName());
     publishingHouseData.setAdress(publishingHouse.getAdress());
     publishingHouseData.setActive(publishingHouse.getIsActive());
-    publishingHouseDataRepository.save(publishingHouseData);
-    return publishingHouse;
+    return PublishingHouse.fromModel(publishingHouseDataRepository.save(publishingHouseData));
+  }
+
+  public List<PublishingHouse> findAll() {
+    return PublishingHouse.fromModel(publishingHouseDataRepository.findAll());
   }
 }
