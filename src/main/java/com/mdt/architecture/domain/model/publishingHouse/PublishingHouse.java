@@ -29,7 +29,7 @@ public class PublishingHouse implements Serializable {
                 .id(publishingHouseData.getId())
                 .name(publishingHouseData.getName())
                 .adress(publishingHouseData.getAdress())
-                .isActive(publishingHouseData.isActive())
+                .isActive(publishingHouseData.getIsActive())
                 .build();
   }
 

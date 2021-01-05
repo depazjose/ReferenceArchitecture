@@ -15,5 +15,5 @@ public class PublishingHouseData {
   private String id;
   private String name;
   private String adress;
-  private boolean isActive;
+  private Boolean isActive;
 }

@@ -1,6 +1,5 @@
 package com.mdt.architecture.infrastructure.entrypoints.receivers.web.house.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.mdt.architecture.domain.model.publishingHouse.PublishingHouse;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +14,6 @@ public interface PublishingHouseResponse {
   @Getter
   @Setter
   @ToString
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   class PublishingHouseDetailResponse {
 
     private String id;

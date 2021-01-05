@@ -18,7 +18,7 @@ public class PublishingHouseRepositoryAdapter {
     publishingHouseData.setId(publishingHouse.getId());
     publishingHouseData.setName(publishingHouse.getName());
     publishingHouseData.setAdress(publishingHouse.getAdress());
-    publishingHouseData.setActive(publishingHouse.getIsActive());
+    publishingHouseData.setIsActive(publishingHouse.getIsActive());
     return PublishingHouse.fromModel(publishingHouseDataRepository.save(publishingHouseData));
   }
 

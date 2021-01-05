@@ -1,5 +1,6 @@
 package com.mdt.architecture.infrastructure.entrypoints.receivers.web.house;
 
+import com.mdt.architecture.domain.model.publishingHouse.PublishingHouse;
 import com.mdt.architecture.domain.usescase.publishinghouse.PublishingHouseUseCase;
 import com.mdt.architecture.infrastructure.entrypoints.receivers.web.house.dto.PublishingHouseRequest;
 import com.mdt.architecture.infrastructure.entrypoints.receivers.web.house.dto.PublishingHouseResponse;
@@ -22,12 +23,13 @@ public class PublishingHouseController {
   }
 
   @PostMapping
-  public void createPublishingHouse(
+  public PublishingHouse createPublishingHouse(
           @RequestBody PublishingHouseRequest.CreationPublishingHouseRequest creationPublishingHouseRequest) {
 
-    publishingHouseUseCase.savePublishingHouse(PublishingHouseRequest.CreationPublishingHouseRequest
-            .toModel(creationPublishingHouseRequest));
 
+
+    return publishingHouseUseCase.savePublishingHouse(PublishingHouseRequest.CreationPublishingHouseRequest
+            .toModel(creationPublishingHouseRequest));
   }
 
   @GetMapping
