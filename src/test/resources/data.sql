@@ -40,3 +40,35 @@ false,
 '2020-01-01 00:00:00',
 'SCHEDULED');
 
+INSERT INTO publishing_house_data
+(id,
+name,
+address,
+is_active)
+VALUES
+(1,
+'Norma',
+'Calle 13',
+true);
+
+INSERT INTO publishing_house_data
+(id,
+name,
+address,
+is_active)
+VALUES
+(2,
+'Atalaya',
+'Cra 1',
+false);
+
+INSERT INTO publishing_house_data
+(id,
+name,
+address,
+is_active)
+VALUES
+(3,
+'Castilla',
+'Diagonal sur',
+true);

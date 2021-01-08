@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PublishingHouse implements Serializable {
 
-  private String id;
+  private Long id;
   private String name;
   private String adress;
   private Boolean isActive;
@@ -28,7 +28,7 @@ public class PublishingHouse implements Serializable {
     return PublishingHouse.builder()
                 .id(publishingHouseData.getId())
                 .name(publishingHouseData.getName())
-                .adress(publishingHouseData.getAdress())
+                .adress(publishingHouseData.getAddress())
                 .isActive(publishingHouseData.getIsActive())
                 .build();
   }

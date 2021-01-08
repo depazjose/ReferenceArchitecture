@@ -31,9 +31,10 @@ class PublishingHouseUseCaseImplTest {
 
   @Test
   void shouldSaveNewPublishingHouse() {
-    Mockito.when(publishingHouseRepository.savePublishingHouse(getNewBook())).thenReturn(getNewBook());
+    Mockito.when(publishingHouseRepository.savePublishingHouse(getNewBook())).thenReturn(buildANewBook());
     PublishingHouse result = publishingHouseUseCase.savePublishingHouse(getNewBook());
     Assertions.assertNotNull(result);
+    Assertions.assertNotNull(result.getId());
   }
 
   @Test
@@ -48,16 +49,26 @@ class PublishingHouseUseCaseImplTest {
     Mockito.when(publishingHouseRepository.findAll()).thenReturn(publishingHouseList());
     List<PublishingHouse> publishingHouses = publishingHouseUseCase.findAll();
     Assertions.assertNotNull(publishingHouses);
+    Assertions.assertEquals(publishingHouses.stream().map(PublishingHouse::getId).distinct().count(),
+            publishingHouses.size());
   }
 
   private PublishingHouse getNewBook() {
-
-    return PublishingHouse.builder().id("id1")
+    return PublishingHouse.builder()
                 .adress("Cra1")
                 .name("Editorial Norma")
                 .isActive(true)
                 .build();
 
+  }
+
+  private PublishingHouse buildANewBook() {
+    return PublishingHouse.builder()
+            .id(1L)
+            .adress("Cra1")
+            .name("Editorial Norma")
+            .isActive(true)
+            .build();
   }
 
   private PublishingHouse bookWithOutName() {
@@ -68,9 +79,14 @@ class PublishingHouseUseCaseImplTest {
 
   private List<PublishingHouse> publishingHouseList() {
     List<PublishingHouse> publishingHouses = new ArrayList<>();
-    publishingHouses.add(getNewBook());
-    publishingHouses.add(getNewBook());
-    publishingHouses.add(getNewBook());
+
+    PublishingHouse data1 = new PublishingHouse();
+    data1.setId(2L);
+    PublishingHouse data2 = new PublishingHouse();
+    data2.setId(3L);
+    publishingHouses.add(buildANewBook());
+    publishingHouses.add(data1);
+    publishingHouses.add(data2);
     return publishingHouses;
   }
 }

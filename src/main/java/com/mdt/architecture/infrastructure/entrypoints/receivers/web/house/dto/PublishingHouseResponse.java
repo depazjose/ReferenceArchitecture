@@ -16,7 +16,7 @@ public interface PublishingHouseResponse {
   @ToString
   class PublishingHouseDetailResponse {
 
-    private String id;
+    private Long id;
     private String name;
     private String adress;
     private Boolean isActive;

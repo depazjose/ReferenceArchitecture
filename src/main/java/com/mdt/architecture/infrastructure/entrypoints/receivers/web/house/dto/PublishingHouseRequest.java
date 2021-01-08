@@ -10,7 +10,7 @@ public interface PublishingHouseRequest {
   @Setter
   class CreationPublishingHouseRequest {
 
-    private String id;
+    private Long id;
     private String name;
     private String adress;
     private Boolean isActive;

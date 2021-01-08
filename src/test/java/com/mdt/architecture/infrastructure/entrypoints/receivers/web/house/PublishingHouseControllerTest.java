@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import com.mdt.architecture.domain.model.publishingHouse.PublishingHouse;
 import com.mdt.architecture.domain.usescase.publishinghouse.PublishingHouseUseCase;
 import com.mdt.architecture.infrastructure.entrypoints.receivers.web.house.dto.PublishingHouseRequest;
+import com.mdt.architecture.infrastructure.entrypoints.receivers.web.house.dto.PublishingHouseResponse;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
@@ -28,7 +29,7 @@ public class PublishingHouseControllerTest {
   private String name = "el tiempo";
   private String adress = "calle 5";
   private Boolean isActive = true;
-  private String id = "id3";
+  private static final Long INITIALID = 1L;
 
   @BeforeEach
   void init() {
@@ -41,20 +42,26 @@ public class PublishingHouseControllerTest {
     PublishingHouse newHouse = buildNewPublishingHouse();
 
     Mockito.when(publishingHouseUseCase.savePublishingHouse(any())).thenReturn(newHouse);
-    Assertions.assertNotNull(publishingHouseController.createPublishingHouse(request));
-    Assertions.assertEquals(id, publishingHouseController.createPublishingHouse(request).getId());
+    PublishingHouse result = publishingHouseController.createPublishingHouse(request);
+    Assertions.assertNotNull(result);
+    Assertions.assertNotNull(result.getId());
+    Assertions.assertEquals(INITIALID, result.getId());
   }
 
   @Test
   void shouldGetAllHouses() {
     Mockito.when(publishingHouseUseCase.findAll()).thenReturn(getAllHouses());
+    List<PublishingHouseResponse.PublishingHouseDetailResponse> publishingHouses = publishingHouseController
+            .getAllPublishingHouses();
+
     Assertions.assertNotNull(publishingHouseController.getAllPublishingHouses());
-    Assertions.assertTrue(getAllHouses().get(0).getId().equals(id));
+    Assertions.assertEquals(publishingHouses.stream().map(PublishingHouseResponse.PublishingHouseDetailResponse::getId)
+                    .distinct().count(), publishingHouses.size());
   }
 
   private PublishingHouse buildNewPublishingHouse() {
     return PublishingHouse.builder()
-                .id(id)
+                .id(INITIALID)
                 .name(name)
                 .adress(adress)
                 .isActive(isActive)
@@ -72,9 +79,14 @@ public class PublishingHouseControllerTest {
 
   private List<PublishingHouse> getAllHouses() {
     List<PublishingHouse> publishingHouses = new ArrayList<>();
+
+    PublishingHouse data1 = new PublishingHouse();
+    data1.setId(2L);
+    PublishingHouse data2 = new PublishingHouse();
+    data2.setId(3L);
     publishingHouses.add(buildNewPublishingHouse());
-    publishingHouses.add(buildNewPublishingHouse());
-    publishingHouses.add(buildNewPublishingHouse());
+    publishingHouses.add(data1);
+    publishingHouses.add(data2);
     return publishingHouses;
   }
 }
