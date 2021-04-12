@@ -2,8 +2,6 @@ package com.mdt.architecture.domain.usecase;
 
 import com.mdt.architecture.domain.model.book.Book;
 import com.mdt.architecture.domain.model.book.gateway.BookRepository;
-import com.mdt.architecture.domain.model.event.gateway.EventSender;
-import com.mdt.architecture.domain.usescase.BookUseCaseImpl;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
@@ -17,11 +15,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 class BookUseCaseImplTest {
-  @Mock
-  private BookRepository bookRepository;
 
   @Mock
-  private EventSender sender;
+  private BookRepository bookRepository;
 
   @InjectMocks
   private BookUseCaseImpl bookUseCase;

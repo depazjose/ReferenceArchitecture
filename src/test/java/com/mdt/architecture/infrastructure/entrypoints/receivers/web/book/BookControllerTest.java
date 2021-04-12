@@ -3,7 +3,9 @@ package com.mdt.architecture.infrastructure.entrypoints.receivers.web.book;
 import static org.mockito.ArgumentMatchers.any;
 
 import com.mdt.architecture.domain.model.book.Book;
-import com.mdt.architecture.domain.usescase.BookUseCase;
+import com.mdt.architecture.domain.model.book.gateway.BookRepository;
+import com.mdt.architecture.domain.usecase.BookUseCase;
+import com.mdt.architecture.domain.usecase.BookUseCaseImpl;
 import com.mdt.architecture.infrastructure.entrypoints.receivers.web.book.dto.BookRequest;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +26,10 @@ class BookControllerTest {
   private static final long ISBN = 1234567890L;
 
   @Mock
-  private BookUseCase bookUseCase;
+  private BookRepository bookRepository;
+
+  @Mock
+  private BookUseCase bookUseCase = new BookUseCaseImpl(bookRepository);
 
   @InjectMocks
   private BookController bookController;

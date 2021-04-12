@@ -1,24 +1,15 @@
 spring:
   profiles: test
-  datasource:
-    url: jdbc:h2:file:~/data/demoRefKtTest;TRACE_LEVEL_FILE=4
-    driverClassName: org.h2.Driver
-    username: sa
-    password: password
-    initialization-mode: never
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate.hbm2ddl.import_files: schema.sql
-  h2:
-    console:
-      enabled: false
-      path: /h2-console
-      settings:
-        trace: false
-        web-allow-others: true
+  data:
+    mongodb:
+      database: test
+      host: localhost
+      user: root
+      password: root
+      port: 27107
+      appName: test
+      isSsl: false
+      withSha1: false
 
 inventory:
   active-items:

@@ -3,7 +3,7 @@ package com.mdt.architecture.infrastructure.entrypoints.receivers.web.book;
 import com.mdt.architecture.domain.model.book.Book;
 import com.mdt.architecture.domain.shared.BookFoundException;
 import com.mdt.architecture.domain.shared.BookNotFoundException;
-import com.mdt.architecture.domain.usescase.BookUseCase;
+import com.mdt.architecture.domain.usecase.BookUseCase;
 import com.mdt.architecture.infrastructure.entrypoints.receivers.web.book.dto.BookRequest;
 import com.mdt.architecture.infrastructure.entrypoints.receivers.web.book.dto.BookResponse.BookDetailResponse;
 import io.swagger.annotations.ApiOperation;

@@ -1,6 +1,6 @@
 package com.mdt.architecture.infrastructure.schedulers;
 
-import com.mdt.architecture.domain.usescase.BookUseCase;
+import com.mdt.architecture.domain.usecase.BookUseCase;
 import com.mdt.architecture.infrastructure.adapters.database.BookRepositoryAdapter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
